@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+		integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+		crossorigin="anonymous"></link>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+		<style>
+body {
+	background-color: #eee;
+}
+
+*[role="form"] {
+	max-width: 530px;
+	padding: 15px;
+	margin: 0 auto;
+	background-color: #fff;
+	border-radius: 0.3em;
+}
+
+*[role="form"] h2 {
+	margin-left: 5em;
+	margin-bottom: 1em;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+}
+
+li1 {
+	float: right;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover:not (.active ) {
+	background-color: #111;
+}
+
+.active {
+	background-color: #4CAF50;
+}
+</style>
+		
+</h:head>
+<h:body>
+<ul>
+		<li style="color:white"><h4>Admin's dashboard</h4></li>
+		<li style="float: right"><h:form>
+				<h:commandButton class="btn btn-primary" id="submit" value="Logout"
+					action="#{LoginBean.logout}"></h:commandButton>
+			</h:form></li>
+	</ul>
+	<!-- <h2>#{LoginBean.session}</h2> -->
+	
+	<div class="container">
+	<div>      
+  <h:form>
+  <h:commandButton class="btn btn-primary" id="get" value="getInfo"
+					action="#{AdminBean.getInfo}"></h:commandButton>
+  <h:dataTable id="table" value="#{AdminBean.list}" var="user">
+  <h:column>
+  <f:facet name="header"><h:outputText value= "Uid"></h:outputText></f:facet>
+  <h:outputText Style="" value="#{user.uid}"></h:outputText>
+  </h:column>
+  <h:column>
+  <f:facet name="header"><h:outputText value= "First Name"></h:outputText></f:facet>
+  <h:outputText Style="" value="#{user.firstname}"></h:outputText>
+  </h:column>
+  <h:column>
+  <f:facet name="header"><h:outputText value= "Last Name"></h:outputText></f:facet>
+  <h:outputText Style="" value="#{user.lastname}"></h:outputText>
+  </h:column>
+  <h:column>
+  <f:facet name="header"><h:outputText value= "Approve/Decline"></h:outputText></f:facet>
+  <h:commandButton value="Approve" id="approve" action="#{AdminBean.approve}">
+  <!-- <f:param name="apr" value="#{user.uid}"></f:param> -->
+  </h:commandButton>
+  </h:column>
+  </h:dataTable>
+  </h:form>
+  </div>
+</div>
+</h:body>
+
+	
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"></link> -->
+<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+		integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+		crossorigin="anonymous"></link>
+		<style>
+body {
+	background-color: #eee;
+}
+
+*[role="form"] {
+	max-width: 530px;
+	padding: 15px;
+	margin: 0 auto;
+	background-color: #fff;
+	border-radius: 0.3em;
+}
+
+*[role="form"] h2 {
+	margin-left: 5em;
+	margin-bottom: 1em;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+}
+
+li1 {
+	float: right;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover:not (.active ) {
+	background-color: #111;
+}
+
+.active {
+	background-color: #4CAF50;
+}
+</style>
+</h:head>
+<h:body>
+<ul>
+		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist" value="watchlist" ></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="mgrprofile" value="manager profile"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="account" value="account"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="search" value="search stocks" action="stockview"></h:commandButton></h:form></li>
+		
+		<li style="float: right"><h:form>
+				<h:commandButton class="btn btn-primary" id="submit" value="Logout"
+					action="#{LoginBean.logout}"></h:commandButton>
+			</h:form></li>
+			<li style = "float:right"><h:form><h:commandButton class="btn btn-primary" id="submit" value="Profile"></h:commandButton></h:form></li>
+	</ul>
+        <div class="container">
+            <h:form>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-lg-12" style="width:100%;text-align:right">
+                        <span style="float:left;">
+                            <h:panelGroup rendered="#{not empty LoginBean.firstname}">
+                                <p>Welcome #{LoginBean.firstname}</p>
+                            </h:panelGroup>
+                        </span>
+                        
+                    </div>
+                </div>
+            </h:form>
+
+            
+
+                <div class="row">
+
+                    <h:form>
+                        <label for="sel1">Stock: </label>
+                        <h:selectOneMenu id="symbol" value="#{StockBean.selectedSymbol}">
+                            <f:selectItems value="#{StockBean.availableSymbols}" />
+                        </h:selectOneMenu>
+
+                        <label for="sel1">Interval: </label>
+                        <h:selectOneMenu id="interval" value="#{StockBean.selectedInterval}">
+                            <f:selectItems value="#{StockBean.availableIntervals}" />
+                        </h:selectOneMenu>
+                        <br />
+                        <h:commandButton value="Get Data" action="#{StockBean.timeseries}" styleClass="btn btn-success" />
+                    </h:form>
+                </div>
+
+                <h:panelGroup rendered="#{not empty StockBean.table1Markup}">
+                    <h:outputText value="#{StockBean.table1Markup}" escape="false" styleClass="preformatted" />
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{not empty StockBean.table2Markup}">
+                    <h:outputText value="#{StockBean.table2Markup}" escape="false" styleClass="preformatted" />
+                </h:panelGroup>
+            </div>
+        
+    </h:body>
+
+</html>
