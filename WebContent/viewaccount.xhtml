@@ -5,6 +5,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 <h:head>
 <link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
@@ -61,14 +62,12 @@ li a:hover:not (.active ) {
 }
 </style>
 </h:head>
-<h:body>
-<h2>user</h2>
-
+<h:body><h4>view account</h4>
 <ul>
 		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist" value="watchlist" action="watchlist" ></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="mgrprofile" value="manager profile" action="viewmanager"></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="account" value="account" action="viewaccount"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="search" value="search stocks" action="#{StockBean.timeseries}"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="search" value="search stocks" action="stockview"></h:commandButton></h:form></li>
 		
 		<li style="float: right"><h:form>
 				<h:commandButton class="btn btn-primary" id="submit" value="Logout"
@@ -76,6 +75,5 @@ li a:hover:not (.active ) {
 			</h:form></li>
 			<li style = "float:right"><h:form><h:commandButton class="btn btn-primary" id="submit" value="Profile" action="#{RegisterBean.viewprofile}"></h:commandButton></h:form></li>
 	</ul>
-	<p>#{RegisterBean.session}</p>
-</h:body>
+	</h:body>
 </html>

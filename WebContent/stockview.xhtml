@@ -71,17 +71,17 @@ li a:hover:not (.active ) {
 		
 		<li style="float: right"><h:form>
 				<h:commandButton class="btn btn-primary" id="submit" value="Logout"
-					action="#{LoginBean.logout}"></h:commandButton>
+					action="#{RegisterBean.logout}"></h:commandButton>
 			</h:form></li>
-			<li style = "float:right"><h:form><h:commandButton class="btn btn-primary" id="submit" value="Profile"></h:commandButton></h:form></li>
+			<li style = "float:right"><h:form><h:commandButton class="btn btn-primary" id="submit" value="Profile" action="#{RegisterBean.viewprofile}"></h:commandButton></h:form></li>
 	</ul>
         <div class="container">
             <h:form>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-lg-12" style="width:100%;text-align:right">
                         <span style="float:left;">
-                            <h:panelGroup rendered="#{not empty LoginBean.firstname}">
-                                <p>Welcome #{LoginBean.firstname}</p>
+                            <h:panelGroup rendered="#{not empty RegisterBean.firstname}">
+                                <p>Welcome #{RegisterBean.firstname}</p>
                             </h:panelGroup>
                         </span>
                         
@@ -91,7 +91,7 @@ li a:hover:not (.active ) {
 
             
 
-                <div class="row">
+                <div class="container">
 
                     <h:form>
                         <label for="sel1">Stock: </label>
@@ -104,7 +104,7 @@ li a:hover:not (.active ) {
                             <f:selectItems value="#{StockBean.availableIntervals}" />
                         </h:selectOneMenu>
                         <br />
-                        <h:commandButton value="Get Data" action="#{StockBean.timeseries}" styleClass="btn btn-success" />
+                        <h:commandButton class="btn btn-primary" value="Get Data" action="#{StockBean.timeseries}"/>
                     </h:form>
                 </div>
 

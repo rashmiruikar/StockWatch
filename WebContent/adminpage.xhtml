@@ -71,16 +71,16 @@ li a:hover:not (.active ) {
 		<li style="color:white"><h4>Admin's dashboard</h4></li>
 		<li style="float: right"><h:form>
 				<h:commandButton class="btn btn-primary" id="submit" value="Logout"
-					action="#{LoginBean.logout}"></h:commandButton>
+					action="#{RegisterBean.logout}"></h:commandButton>
 			</h:form></li>
 	</ul>
-	<!-- <h2>#{LoginBean.session}</h2> -->
+	<!-- <h2>#{RegisterBean.session}</h2> -->
 	
 	<div class="container">
 	<div>      
   <h:form>
-  <h:commandButton class="btn btn-primary" id="get" value="getInfo"
-					action="#{AdminBean.getInfo}"></h:commandButton>
+ <!--  <h:commandButton class="btn btn-primary" id="get" value="getInfo"
+					></h:commandButton> -->
   <h:dataTable id="table" value="#{AdminBean.list}" var="user">
   <h:column>
   <f:facet name="header"><h:outputText value= "Uid"></h:outputText></f:facet>
@@ -96,8 +96,9 @@ li a:hover:not (.active ) {
   </h:column>
   <h:column>
   <f:facet name="header"><h:outputText value= "Approve/Decline"></h:outputText></f:facet>
-  <h:commandButton value="Approve" id="approve" action="#{AdminBean.approve}">
-  <!-- <f:param name="apr" value="#{user.uid}"></f:param> -->
+  <h:commandButton value="Approve" id="approve" action="#{AdminBean.approve(user.uid)}" onclick="this.style.backgroundColor='#F1F1F1'">
+  </h:commandButton>
+    <h:commandButton value="Decline" id="decline" action="#{AdminBean.decline(user.uid)}">
   </h:commandButton>
   </h:column>
   </h:dataTable>

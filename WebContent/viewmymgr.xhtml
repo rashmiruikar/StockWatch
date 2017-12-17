@@ -5,6 +5,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 <h:head>
 <link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
@@ -62,13 +63,11 @@ li a:hover:not (.active ) {
 </style>
 </h:head>
 <h:body>
-<h2>user</h2>
-
 <ul>
-		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist" value="watchlist" action="watchlist" ></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist1" value="watchlist"></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="mgrprofile" value="manager profile" action="viewmanager"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="account" value="account" action="viewaccount"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="search" value="search stocks" action="#{StockBean.timeseries}"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="account1" value="account"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="search1" value="stockview"></h:commandButton></h:form></li>
 		
 		<li style="float: right"><h:form>
 				<h:commandButton class="btn btn-primary" id="submit" value="Logout"
@@ -76,6 +75,22 @@ li a:hover:not (.active ) {
 			</h:form></li>
 			<li style = "float:right"><h:form><h:commandButton class="btn btn-primary" id="submit" value="Profile" action="#{RegisterBean.viewprofile}"></h:commandButton></h:form></li>
 	</ul>
-	<p>#{RegisterBean.session}</p>
+	<h4>my manager</h4>
+	<div class="container">
+	  
+  <h:form>
+  <h:dataTable id="table" value="#{ManagerBean.list}" var="user">
+  
+  <h:column>
+  <f:facet name="header"><h:outputText value= "First Name"></h:outputText></f:facet>
+  <h:outputText Style="" value="#{user.firstname}"></h:outputText>
+  </h:column>
+  <h:column>
+  <f:facet name="header"><h:outputText value= "Last Name"></h:outputText></f:facet>
+  <h:outputText Style="" value="#{user.lastname}"></h:outputText>
+  </h:column>
+  </h:dataTable>
+  </h:form>
+  </div>
 </h:body>
 </html>

@@ -68,19 +68,19 @@ li a:hover:not (.active ) {
 				<H2>Login</H2>
 				<div class="form-group">
 					<h:outputLabel for="username">Username</h:outputLabel>
-					<h:inputText class="form-control" value="#{LoginBean.username}"
+					<h:inputText class="form-control" value="#{RegisterBean.username}"
 						id="username" required="true" requiredMessage="Username is required">
 					</h:inputText>
 				</div>
 				<div class="form-group">
 					<h:outputLabel for="password">Password</h:outputLabel>
-					<h:inputSecret class="form-control" value="#{LoginBean.password}"
+					<h:inputSecret class="form-control" value="#{RegisterBean.password}"
 						id="password" required="true" requiredMessage="Password is required">
 					</h:inputSecret>
 				</div>
 				<div class="form-group">
 					<h:commandButton class="btn btn-primary" id="submit" value="submit"
-						action="#{LoginBean.login()}"></h:commandButton>
+						action="#{RegisterBean.login()}"></h:commandButton>
 				</div>
 				<div>
 				<h:message for="username" class="error" style="color:red"></h:message>

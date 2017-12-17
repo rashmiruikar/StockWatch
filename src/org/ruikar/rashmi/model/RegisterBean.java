@@ -5,11 +5,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.ruikar.rashmi.connection.dbconnection;
+import org.ruikar.rashmi.doa.UpdateprofileDOA;
+import org.ruikar.rashmi.doa.ViewprofileDOA;
 
 @ManagedBean(name="RegisterBean")
+@SessionScoped
 public class RegisterBean {
 
 	private String firstname;
@@ -17,11 +23,25 @@ public class RegisterBean {
 	private String email;
 	private String username;
 	private String password;
-	private String role ;
+	private String role;
 	private DecimalFormat balance;
 	private Boolean checkmanager;
 	private String approval;
+	private String session;
+	private int uid;
 	
+	public int getUid() {
+		return uid;
+	}
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+	public String getSession() {
+		return session;
+	}
+	public void setSession(String session) {
+		this.session = session;
+	}
 	public String getApproval() {
 		return approval;
 	}
@@ -143,6 +163,127 @@ public class RegisterBean {
 		
 	}
 	
+	public String login() throws SQLException {
+		try {
+			//System.out.println(this.role);
+			int session1;
+			String sql = "SELECT * from user where uname = ? and password = ?";
+			PreparedStatement st = dbconnection.a.getconnection().prepareStatement(sql);
+			st.setString(1, this.username);
+			st.setString(2, this.password);
+
+			// Execute the statement
+			ResultSet rs = st.executeQuery();
+
+			// Iterate through results
+			if (rs.next()) {
+				session1 = rs.getInt("uid");
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("session1", session1);
+
+				System.out.println("Name is: " + rs.getString("fname"));
+				this.setFirstname(rs.getString("fname"));
+				this.setRole(rs.getString("role"));
+				this.setApproval(rs.getString("approval"));
+				System.out.println(this.approval);
+				
+				System.out.println(this.role);
+				if (this.role.equals("User"))
+				{
+						return "homepage";
+				}
+				else if(this.role.equals("Manager") && this.approval.equals("Yes"))
+				{
+					return "managerhomepage";
+				}
+				else if(this.role.equals("Admin"))
+				{
+					return "adminpage";
+				}
+				else
+				{
+					return "login";
+				}
+			} 
+			else 
+			{
+				this.username = "";
+				System.out.println("invalid user");
+				
+				  FacesContext obj = FacesContext.getCurrentInstance();
+				  FacesMessage message= new FacesMessage("Invalid credentials. Please try again");
+				  obj.addMessage("myform:username", message);
+				 
+				return "login";
+				
+			}
+		}
+
+		catch (Exception e) {
+			System.err.println("Exception: " + e.getMessage());
+		} 
+		finally {
+			try
+			{
+				System.out.println("Before connection");
+				dbconnection.a.getconnection().close();
+				System.out.println("After connection");
+				
+			}
+			catch (SQLException e)
+			{
+				
+			}
+
+		}
+
+		return "login";
+	}
+	
+public String logout() {
+		
+		//String sname =(String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("session");
+		//System.out.println("before" + abc);
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		//System.out.println("after"+ (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("session")); 
+		return "login";
+
+	}
+
+public void updateprofile()
+{
+	
+		int userid = (Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("session1");
+		RegisterBean rb = new RegisterBean();
+		rb.setFirstname(this.firstname);
+		rb.setLastname(this.lastname);
+		rb.setEmail(this.email);
+		rb.setUsername(this.username);
+		rb.setPassword(this.password);	
+		rb.setUid(userid);
+		UpdateprofileDOA up = new UpdateprofileDOA();
+		up.update(rb);
+		System.out.println("update successful");
+					
+}
+
+public String viewprofile()
+{
+	int userid = (Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("session1");
+	//RegisterBean rb = new RegisterBean();
+	
+	ViewprofileDOA vp = new ViewprofileDOA();
+	RegisterBean rb = vp.viewprofile(userid);
+	this.firstname = rb.getFirstname();
+	this.lastname = rb.getLastname();
+	this.email = rb.getEmail();
+	this.username = rb.getUsername();
+	this.password = rb.getPassword();
+	System.out.println(this.firstname + "view profile");
+	return "profile";
+	
+	
+	
+}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

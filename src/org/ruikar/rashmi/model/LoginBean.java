@@ -6,12 +6,14 @@ import java.sql.SQLException;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 
 import org.ruikar.rashmi.connection.dbconnection;
 
 @ManagedBean(name = "LoginBean")
+@SessionScoped
 public class LoginBean {
 
 	private String firstname;
@@ -81,7 +83,7 @@ public class LoginBean {
 	public String login() throws SQLException {
 		try {
 			//System.out.println(this.role);
-			String sql = "SELECT fname, role, password from user where uname = ? and password = ?";
+			String sql = "SELECT fname, role, uname, password from user where uname = ? and password = ?";
 			PreparedStatement st = dbconnection.a.getconnection().prepareStatement(sql);
 			st.setString(1, this.username);
 			st.setString(2, this.password);
@@ -91,7 +93,7 @@ public class LoginBean {
 
 			// Iterate through results
 			if (rs.next()) {
-				session = rs.getString("fname") + " is successfully logged in";
+				session = rs.getString("uname") + " is successfully logged in";
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("session", session);
 
 				System.out.println("Name is: " + rs.getString("fname"));
@@ -159,4 +161,8 @@ public String logout() {
 		return "login";
 
 	}
+public void updateprofile()
+{
+	System.out.println("profile changes");
+}
 }

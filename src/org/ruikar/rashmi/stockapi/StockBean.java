@@ -287,7 +287,8 @@ public class StockBean {
 	                            + "<td>" + subJsonObj.getString("5. volume") + "</td>";
 	                    if (i == 0) {
 	                        String path = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
-	                        this.table2Markup += "<td><a class='btn btn-success' href='" + path + "/faces/purchase.xhtml?symbol=" + symbol + "&price=" + subJsonObj.getString("4. close") + "'>Buy Stock</a></td>";
+	                        this.table2Markup += "<td><a class='btn btn-primary' href='" + path + "/faces/purchase.xhtml?symbol=" + symbol + "&price=" + subJsonObj.getString("4. close") + "'>Buy Stock</a></td>";
+	                        this.table2Markup += "<td><a class='btn btn-primary'>Add Watchlist</a></td>";
 	                    }
 	                    this.table2Markup += "</tr>";
 	                    i++;
