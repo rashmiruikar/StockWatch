@@ -64,8 +64,8 @@ li a:hover:not (.active ) {
 </h:head>
 <h:body>
 <ul>
-		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist" value="watchlist" action="#{watchlistBean.vwatchlist}"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="mgrprofile" value="manager profile" action="viewmanager"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist" value="watchlist" ></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="request" value="Request"></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="account" value="account"></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="search" value="search stocks" action="stockview"></h:commandButton></h:form></li>
 		
@@ -73,7 +73,7 @@ li a:hover:not (.active ) {
 				<h:commandButton class="btn btn-primary" id="submit" value="Logout"
 					action="#{RegisterBean.logout}"></h:commandButton>
 			</h:form></li>
-			<li style = "float:right"><h:form><h:commandButton class="btn btn-primary" id="submit" value="Profile" action="#{RegisterBean.viewprofile}"></h:commandButton></h:form></li>
+			<li style = "float:right"><h:form><h:commandButton class="btn btn-primary" id="submit" value="Profile" action="#{RegisterBean.viewprofile1}"></h:commandButton></h:form></li>
 	</ul>
         <div class="container">
             <h:form>

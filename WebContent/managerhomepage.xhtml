@@ -68,13 +68,13 @@ li a:hover:not (.active ) {
 		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist1" value="watchlist"></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="request" value="Request"></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="account1" value="account"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="search1" value="stockview"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="search1" value="Search stocks" action="#{StockBean.timeseries}"></h:commandButton></h:form></li>
 		
 		<li style="float: right"><h:form>
 				<h:commandButton class="btn btn-primary" id="submit" value="Logout"
 					action="#{RegisterBean.logout}"></h:commandButton>
 			</h:form></li>
-			<li style = "float:right"><h:form><h:commandButton class="btn btn-primary" id="submit" value="Profile" action="#{RegisterBean.viewprofile}"></h:commandButton></h:form></li>
+			<li style = "float:right"><h:form><h:commandButton class="btn btn-primary" id="submit" value="Profile" action="#{RegisterBean.viewprofile1}"></h:commandButton></h:form></li>
 	</ul>
 	<p>#{RegisterBean.session}</p></h:body>
 </html>

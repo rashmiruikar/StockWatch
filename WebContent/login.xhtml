@@ -57,13 +57,18 @@ li a:hover:not (.active ) {
 .active {
 	background-color: #4CAF50;
 }
+.center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
 </style>
 </h:head>
 <h:body>
 	<div class="container">	
 			<h:form class="form-horizontal" role="form" id="myform">
 			<h:panelGroup rendered="#{not empty RegisterBean.firstname}">
-   		    	<p>Welcome #{RegisterBean.firstname}, you have been registered. Login here !</p>
+   		    	<!-- <p>Welcome #{RegisterBean.firstname}, you have been registered. Login here !</p> -->
 			</h:panelGroup>
 				<H2>Login</H2>
 				<div class="form-group">
@@ -86,8 +91,12 @@ li a:hover:not (.active ) {
 				<h:message for="username" class="error" style="color:red"></h:message>
 				
 				</div>
-			
 			</h:form>
+			<div class="center">
+			<h:form  class="form-horizontal">
+			<p>Don't have an account?</p><h:commandButton class="btn btn-primary" id="register" value="Register here" action="register"></h:commandButton> 
+			</h:form>
+			</div>
 		</div>
 
 </h:body>

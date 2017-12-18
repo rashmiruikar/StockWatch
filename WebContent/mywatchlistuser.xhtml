@@ -5,7 +5,6 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-
 <h:head>
 <link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
@@ -60,13 +59,16 @@ li a:hover:not (.active ) {
 .active {
 	background-color: #4CAF50;
 }
-</style></h:head>
+</style>
+</h:head>
 <h:body>
+<h2>user</h2>
+
 <ul>
 		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist" value="watchlist" action="#{watchlistBean.vwatchlist}"></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="mgrprofile" value="manager profile" action="viewmanager"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="account" value="account"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="search" value="search stocks" action="#{StockBean.timeseries}"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="account" value="account" action="viewaccount"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="search" value="search stocks" action="stockview"></h:commandButton></h:form></li>
 		
 		<li style="float: right"><h:form>
 				<h:commandButton class="btn btn-primary" id="submit" value="Logout"
@@ -74,13 +76,22 @@ li a:hover:not (.active ) {
 			</h:form></li>
 			<li style = "float:right"><h:form><h:commandButton class="btn btn-primary" id="submit" value="Profile" action="#{RegisterBean.viewprofile}"></h:commandButton></h:form></li>
 	</ul>
-	<div class ="container"><h4>view manager</h4>
-	<div>
-	<ul>
-		<li><h:form><h:commandButton class="btn btn-primary" id="viewmgr" value="View Manager Profile" action="#{ManagerBean.viewmanagerprofile}" ></h:commandButton></h:form></li>
-		<li style="float: right"><h:form><h:commandButton class="btn btn-primary" id="viewmymgr" value="View my Manager" action="#{ManagerBean.viewmymanager}"></h:commandButton></h:form></li>
-		</ul>
-	</div></div>
 	
-	</h:body>
+	<div class="container">
+	<h:form>
+
+  <h:dataTable id="table" value="#{watchlistBean.list}" var="user">
+  <h:column>
+  <f:facet name="header"><h:outputText value= "Stock list"></h:outputText></f:facet>
+  <h:outputText Style="" value="#{user.symbol}"></h:outputText>
+  </h:column>
+  <h:column>
+  <f:facet name="header"><h:outputText value= "Stock Price"></h:outputText></f:facet>
+  <h:outputText Style="" value="#{user.price}"></h:outputText>
+  </h:column>
+  </h:dataTable>
+  </h:form>
+  
+  </div>
+</h:body>
 </html>

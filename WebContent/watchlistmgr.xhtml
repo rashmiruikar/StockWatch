@@ -7,6 +7,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
+<h2>Welcome manager</h2>
 <link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 		integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
@@ -60,19 +61,20 @@ li a:hover:not (.active ) {
 .active {
 	background-color: #4CAF50;
 }
-</style></h:head>
-<h:body><h4>my watchlist</h4>
+</style>
+</h:head>
+<h:body>
 <ul>
-		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist" value="watchlist" action="#{watchlistBean.vwatchlist}" ></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="mgrprofile" value="manager profile" action="viewmanager"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="account" value="account" action="viewaccount"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="search" value="search stocks" action="stockview"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist1" value="watchlist"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="request" value="Request"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="account1" value="account"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="search1" value="Search stocks" action="#{StockBean.timeseries}"></h:commandButton></h:form></li>
 		
 		<li style="float: right"><h:form>
 				<h:commandButton class="btn btn-primary" id="submit" value="Logout"
 					action="#{RegisterBean.logout}"></h:commandButton>
 			</h:form></li>
-			<li style = "float:right"><h:form><h:commandButton class="btn btn-primary" id="submit" value="Profile" action="#{RegisterBean.viewprofile}"></h:commandButton></h:form></li>
+			<li style = "float:right"><h:form><h:commandButton class="btn btn-primary" id="submit" value="Profile" action="#{RegisterBean.viewprofile1}"></h:commandButton></h:form></li>
 	</ul>
 	<div class="container">
 	<div class="col-sm-6">
@@ -83,5 +85,5 @@ li a:hover:not (.active ) {
                         </h:form>
                     </div>
                     </div>
-	</h:body>
+	<p>#{RegisterBean.session}</p></h:body>
 </html>

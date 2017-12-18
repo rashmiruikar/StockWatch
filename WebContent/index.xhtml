@@ -60,22 +60,23 @@ li a:hover:not (.active ) {
 	background-color: #4CAF50;
 }
 </style>
+<ul><li style="float: center"><p>Welcome to My stock watch</p></li></ul>
 </h:head>
 <h:body>
-<h2>user</h2>
-
 <ul>
-		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist" value="watchlist" action="#{watchlistBean.vwatchlist}"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="mgrprofile" value="manager profile" action="viewmanager"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="account" value="account" action="viewaccount"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="search" value="search stocks" action="stockview"></h:commandButton></h:form></li>
-		
-		<li style="float: right"><h:form>
-				<h:commandButton class="btn btn-primary" id="submit" value="Logout"
-					action="#{RegisterBean.logout}"></h:commandButton>
+<li>
+<h:form>
+<h:commandButton class="btn btn-primary" id="submit" value="Register" action="register"></h:commandButton>
+</h:form>
+</li>
+<li style="float: right"><h:form>
+				<h:commandButton class="btn btn-primary" id="submit" value="Login"
+					action="login"></h:commandButton>
 			</h:form></li>
-			<li style = "float:right"><h:form><h:commandButton class="btn btn-primary" id="submit" value="Profile" action="#{RegisterBean.viewprofile}"></h:commandButton></h:form></li>
+			
 	</ul>
-	<p>#{RegisterBean.session}</p>
-</h:body>
+	</h:body>
 </html>
+
+
+

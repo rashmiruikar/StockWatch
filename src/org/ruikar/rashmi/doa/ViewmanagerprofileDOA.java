@@ -12,7 +12,7 @@ public class ViewmanagerprofileDOA {
 
 	public List getmgrinfo()
 	{
-	List<RegisterBean> list1 = new ArrayList<RegisterBean>();
+	List<RegisterBean> list2 = new ArrayList<RegisterBean>();
 	
 	try
 	{
@@ -25,7 +25,7 @@ public class ViewmanagerprofileDOA {
 			rb.setFirstname(rs.getString("fname"));
 			rb.setLastname(rs.getString("lname"));
 			rb.setUid(rs.getInt("uid"));
-			list1.add(rb);
+			list2.add(rb);
 							
 		}
 	}
@@ -34,7 +34,7 @@ public class ViewmanagerprofileDOA {
 		
 	}
 
-	return list1;
+	return list2;
 }
 	
 	public List getmymgrinfo(int userid)

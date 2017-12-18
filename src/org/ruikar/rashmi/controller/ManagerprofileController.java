@@ -11,10 +11,10 @@ public class ManagerprofileController {
 	
 	public List getInfo()
 	{
-		List<RegisterBean> list1 = new ArrayList<RegisterBean>();
+		List<RegisterBean> list2 = new ArrayList<RegisterBean>();
 		ViewmanagerprofileDOA vm = new ViewmanagerprofileDOA();
-		list1 = vm.getmgrinfo();
-		return list1;
+		list2 = vm.getmgrinfo();
+		return list2;
 		
 	}
 	

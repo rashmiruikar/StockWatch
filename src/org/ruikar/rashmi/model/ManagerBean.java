@@ -64,19 +64,23 @@ public class ManagerBean {
 	}
 	
 	List<RegisterBean> list1 = new ArrayList<RegisterBean>();
+	List<RegisterBean> list2 = new ArrayList<RegisterBean>();
 	ManagerprofileController mpc = new ManagerprofileController();
 	
 	public ManagerBean()
 	{
-		list1 = mpc.getInfo();
+		/*list1 = mpc.getInfo();
 		this.list = list1;
-		System.out.println(list);
+		System.out.println(list);*/
 	}
 	
 	public String viewmanagerprofile()
 	{
 		System.out.println("in view mgr profile");
-		
+		ManagerprofileController mpc1 = new ManagerprofileController();
+		list2 = mpc1.getInfo();
+		this.list = list2;
+		System.out.println(list);
 		return "viewmgrprofile";
 	}
 	

@@ -8,7 +8,8 @@ package org.ruikar.rashmi.stockapi;
 	import java.security.SecureRandom;
 	import java.security.cert.X509Certificate;
 	import java.sql.Connection;
-	import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 	import java.sql.Statement;
 	import java.util.ArrayList;
 	import java.util.List;
@@ -287,8 +288,8 @@ public class StockBean {
 	                            + "<td>" + subJsonObj.getString("5. volume") + "</td>";
 	                    if (i == 0) {
 	                        String path = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
-	                        this.table2Markup += "<td><a class='btn btn-primary' href='" + path + "/faces/purchase.xhtml?symbol=" + symbol + "&price=" + subJsonObj.getString("4. close") + "'>Buy Stock</a></td>";
-	                        this.table2Markup += "<td><a class='btn btn-primary'>Add Watchlist</a></td>";
+	                        this.table2Markup += "<td><a class='btn btn-primary' href='" + path + "/watchlist.jsf?symbol=" + symbol + "'>Add to Watchlist</a></td>";
+	                        
 	                    }
 	                    this.table2Markup += "</tr>";
 	                    i++;
@@ -304,6 +305,32 @@ public class StockBean {
 	        System.out.println("stockSymbol: " + FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("stockSymbol"));
 	        System.out.println("stockPrice" + FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("stockPrice"));
 	        return;
+	    }
+	    
+	    public String createwatchlist(String symbol) {
+	        try {
+	                      
+	            
+	            //get userid
+	        	int uid = (Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("session1");
+	            
+	            System.out.println(uid);
+	            System.out.println("symbol:" + symbol);
+	           
+	            String sql ="INSERT into watchlist(uid,stockname) values(?,?)";
+	            PreparedStatement ps = dbconnection.a.getconnection().prepareStatement(sql);
+	            ps.setInt(1, uid);
+	            ps.setString(2, symbol);
+	            ps.executeUpdate();
+				ps.close();
+	                                             	     
+	            	           
+	           FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO, "Successfully purchased stock",""));
+	        }
+	        catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return "watchlist";
 	    }
 	}
 

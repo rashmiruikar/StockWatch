@@ -281,9 +281,25 @@ public String viewprofile()
 	System.out.println(this.firstname + "view profile");
 	return "profile";
 	
+}
+
+public String viewprofile1()
+{
+	int userid = (Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("session1");
+	//RegisterBean rb = new RegisterBean();
 	
+	ViewprofileDOA vp = new ViewprofileDOA();
+	RegisterBean rb = vp.viewprofile(userid);
+	this.firstname = rb.getFirstname();
+	this.lastname = rb.getLastname();
+	this.email = rb.getEmail();
+	this.username = rb.getUsername();
+	this.password = rb.getPassword();
+	System.out.println(this.firstname + "view profile");
+	return "editprofilemgr";
 	
 }
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
