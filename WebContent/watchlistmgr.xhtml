@@ -66,10 +66,10 @@ li a:hover:not (.active ) {
 </h:head>
 <h:body>
 <ul>
-		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist1" value="watchlist"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist1" value="watchlist" action="#{watchlistBean.vwatchlist1}"></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="request" value="Request"></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="account1" value="account" action="#{RegisterBean.viewaccount1}"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="search1" value="Search stocks" action="#{StockBean.timeseries}"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="search1" value="Search stocks" action="stockviewmgr"></h:commandButton></h:form></li>
 		
 		<li style="float: right"><h:form>
 				<h:commandButton class="btn btn-primary" id="submit" value="Logout"
@@ -77,14 +77,22 @@ li a:hover:not (.active ) {
 			</h:form></li>
 			<li style = "float:right"><h:form><h:commandButton class="btn btn-primary" id="submit" value="Profile" action="#{RegisterBean.viewprofile1}"></h:commandButton></h:form></li>
 	</ul>
-	<div class="container">
-	<div class="col-sm-6">
-                        <h:form id="watchlist">
-                            <h:messages style="color: red;"/>
-                            Stock Name: <h:inputText binding="#{purchaseSymbol}" id="symbol" styleClass="form-control purchaseSymbol" value="#{StockBean.purchaseSymbol}" required="true"/><br />
-                            <h:commandButton styleClass="btn btn-success btn-login-submit" value="Add to watchlist" action="#{StockBean.createwatchlist(purchaseSymbol.value)}"/>
-                        </h:form>
-                    </div>
-                    </div>
+	
+                    <div class="container">
+	<h:form>
+
+  <h:dataTable id="table" value="#{watchlistBean.list}" var="user">
+  <h:column>
+  <f:facet name="header"><h:outputText value= "Stock list"></h:outputText></f:facet>
+  <h:outputText Style="" value="#{user.symbol}"></h:outputText>
+  </h:column>
+  <h:column>
+  <f:facet name="header"><h:outputText value= "Stock Price"></h:outputText></f:facet>
+  <h:outputText Style="" value="#{user.price}"></h:outputText>
+  </h:column>
+  </h:dataTable>
+  </h:form>
+  
+  </div>
 	<p>#{RegisterBean.session}</p></h:body>
 </html>
