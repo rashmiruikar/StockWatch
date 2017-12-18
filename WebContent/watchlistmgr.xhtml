@@ -62,12 +62,13 @@ li a:hover:not (.active ) {
 	background-color: #4CAF50;
 }
 </style>
+<h3>Manager watchlist</h3>
 </h:head>
 <h:body>
 <ul>
 		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist1" value="watchlist"></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="request" value="Request"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="account1" value="account"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="account1" value="account" action="#{RegisterBean.viewaccount1}"></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="search1" value="Search stocks" action="#{StockBean.timeseries}"></h:commandButton></h:form></li>
 		
 		<li style="float: right"><h:form>

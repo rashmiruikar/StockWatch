@@ -9,7 +9,7 @@ import org.ruikar.rashmi.stockapi.StockBean;
 
 public class WatchlistController {
 	
-	public List getmymgrInfo(int userid)
+	public List getmywatchlistInfo(int userid)
 	{
 		List<StockBean> list1 = new ArrayList<StockBean>();
 		WatchlistDOA wl = new WatchlistDOA();
@@ -18,4 +18,12 @@ public class WatchlistController {
 		
 	}
 
+	public List getmywatchlistInfo1(int userid)
+	{
+		List<StockBean> list1 = new ArrayList<StockBean>();
+		WatchlistDOA wl = new WatchlistDOA();
+		list1 = wl.getmywatchlist1(userid);
+		return list1;
+		
+	}
 }

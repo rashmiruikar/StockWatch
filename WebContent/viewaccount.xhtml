@@ -34,7 +34,7 @@ ul {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: #333;
+	background-color: #FFFFFF;
 }
 
 li {
@@ -62,7 +62,7 @@ li a:hover:not (.active ) {
 }
 </style>
 </h:head>
-<h:body><h4>view account</h4>
+<h:body><h4>view user account</h4>
 <ul>
 		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist" value="watchlist" action="watchlist" ></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="mgrprofile" value="manager profile" action="viewmanager"></h:commandButton></h:form></li>
@@ -75,5 +75,14 @@ li a:hover:not (.active ) {
 			</h:form></li>
 			<li style = "float:right"><h:form><h:commandButton class="btn btn-primary" id="submit" value="Profile" action="#{RegisterBean.viewprofile}"></h:commandButton></h:form></li>
 	</ul>
+	
+	<div class="container">
+	<h:form>
+	<h:column>
+  <h:outputText value= "Balance  "></h:outputText>
+  <h:outputText Style="" value="#{RegisterBean.balance}"></h:outputText>
+  </h:column>
+	</h:form>
+	</div>
 	</h:body>
 </html>

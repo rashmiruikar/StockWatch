@@ -332,6 +332,92 @@ public class StockBean {
 	        }
 	        return "watchlist";
 	    }
+	    
+	    public void timeseries1() throws MalformedURLException, IOException {
+
+	        installAllTrustingManager();
+
+	        //System.out.println("selectedItem: " + this.selectedSymbol);
+	        //System.out.println("selectedInterval: " + this.selectedInterval);
+	        String symbol = this.selectedSymbol;
+	        String interval = this.selectedInterval;
+	        String url = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + symbol + "&interval=" + interval + "&apikey=" + API_KEY;
+
+	        this.table1Markup += "URL::: <a href='" + url + "'>Data Link</a><br>";
+	        InputStream inputStream = new URL(url).openStream();
+
+	        // convert the json string back to object
+	        JsonReader jsonReader = Json.createReader(inputStream);
+	        JsonObject mainJsonObj = jsonReader.readObject();
+	        for (String key : mainJsonObj.keySet()) {
+	            if (key.equals("Meta Data")) {
+	                this.table1Markup = null; // reset table 1 markup before repopulating
+	                JsonObject jsob = (JsonObject) mainJsonObj.get(key);
+	                this.table1Markup += "<style>#detail >tbody > tr > td{ text-align:center;}</style><b>Stock Details</b>:<br>";
+	                this.table1Markup += "<table>";
+	                this.table1Markup += "<tr><td>Information</td><td>" + jsob.getString("1. Information") + "</td></tr>";
+	                this.table1Markup += "<tr><td>Symbol</td><td>" + jsob.getString("2. Symbol") + "</td></tr>";
+	                this.table1Markup += "<tr><td>Last Refreshed</td><td>" + jsob.getString("3. Last Refreshed") + "</td></tr>";
+	                this.table1Markup += "<tr><td>Interval</td><td>" + jsob.getString("4. Interval") + "</td></tr>";
+	                this.table1Markup += "<tr><td>Output Size</td><td>" + jsob.getString("5. Output Size") + "</td></tr>";
+	                this.table1Markup += "<tr><td>Time Zone</td><td>" + jsob.getString("6. Time Zone") + "</td></tr>";
+	                this.table1Markup += "</table>";
+	            } else {
+	                this.table2Markup = null; // reset table 2 markup before repopulating
+	                JsonObject dataJsonObj = mainJsonObj.getJsonObject(key);
+	                this.table2Markup += "<table class='table table-hover'>";
+	                this.table2Markup += "<thead><tr><th>Timestamp</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Volume</th></tr></thead>";
+	                this.table2Markup += "<tbody>";
+	                int i = 0;
+	                for (String subKey : dataJsonObj.keySet()) {
+	                    JsonObject subJsonObj = dataJsonObj.getJsonObject(subKey);
+	                    this.table2Markup
+	                            += "<tr>"
+	                            + "<td>" + subKey + "</td>"
+	                            + "<td>" + subJsonObj.getString("1. open") + "</td>"
+	                            + "<td>" + subJsonObj.getString("2. high") + "</td>"
+	                            + "<td>" + subJsonObj.getString("3. low") + "</td>"
+	                            + "<td>" + subJsonObj.getString("4. close") + "</td>"
+	                            + "<td>" + subJsonObj.getString("5. volume") + "</td>";
+	                    if (i == 0) {
+	                        String path = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
+	                        this.table2Markup += "<td><a class='btn btn-primary' href='" + path + "/watchlist1.jsf?symbol=" + symbol + "'>Add to Watchlist</a></td>";
+	                        
+	                    }
+	                    this.table2Markup += "</tr>";
+	                    i++;
+	                }
+	                this.table2Markup += "</tbody></table>";
+	            }
+	        }
+	        return;
+	    }
+	    
+	    public String createwatchlist1(String symbol) {
+	        try {
+	                      
+	            
+	            //get userid
+	        	int uid = (Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("session1");
+	            
+	            System.out.println(uid);
+	            System.out.println("symbol:" + symbol);
+	           
+	            String sql ="INSERT into watchlist(uid,stockname) values(?,?)";
+	            PreparedStatement ps = dbconnection.a.getconnection().prepareStatement(sql);
+	            ps.setInt(1, uid);
+	            ps.setString(2, symbol);
+	            ps.executeUpdate();
+				ps.close();
+	                                             	     
+	            	           
+	           FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO, "Successfully purchased stock",""));
+	        }
+	        catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return "watchlist1";
+	    }
 	}
 
 

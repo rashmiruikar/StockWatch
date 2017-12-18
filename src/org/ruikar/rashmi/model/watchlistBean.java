@@ -16,6 +16,7 @@ import org.ruikar.rashmi.stockapi.StockBean;
 public class watchlistBean {
 
 	List<StockBean> list1 = new ArrayList<StockBean>();
+	List<StockBean> list2 = new ArrayList<StockBean>();
 	WatchlistController wc = new WatchlistController();
 	List<StockBean> list;
 	
@@ -30,8 +31,15 @@ public class watchlistBean {
 	public String vwatchlist()
 	{
 		int userid = (Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("session1");
-		list1 = wc.getmymgrInfo(userid);
+		list1 = wc.getmywatchlistInfo(userid);
 		this.list = list1;
 		return "mywatchlistuser";
+	}
+	public String vwatchlist1()
+	{
+		int userid = (Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("session1");
+		list2 = wc.getmywatchlistInfo1(userid);
+		this.list = list2;
+		return "watchlistmgr";
 	}
 }

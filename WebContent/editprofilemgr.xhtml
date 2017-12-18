@@ -63,12 +63,12 @@ li a:hover:not (.active ) {
 </style>
 </h:head>
 <h:body>
-<h2>update profile</h2>
+<h2>update manager profile</h2>
 <ul>
-		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist1" value="My watchlist" action="#{watchlistBean.vwatchlist}"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist1" value="My watchlist" action="#{watchlistBean.vwatchlist1}"></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="request" value="Request"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="account1" value="account"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="search1" value="Search stocks" action="#{StockBean.timeseries}"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="account1" value="account" action="#{RegisterBean.viewaccount1}"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="search1" value="Search stocks" action="stockviewmgr"></h:commandButton></h:form></li>
 		
 		<li style="float: right"><h:form>
 				<h:commandButton class="btn btn-primary" id="submit" value="Logout"

@@ -63,11 +63,11 @@ li a:hover:not (.active ) {
 </style>
 </h:head>
 <h:body>
-<h2>update profile</h2>
+<h2>update user profile</h2>
 <ul>
 		<li><h:form><h:commandButton class="btn btn-primary" id="watchlist" value="My watchlist" action="#{watchlistBean.vwatchlist}" ></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="mgrprofile" value="manager profile" action="viewmanager"></h:commandButton></h:form></li>
-		<li><h:form><h:commandButton class="btn btn-primary" id="account" value="account"></h:commandButton></h:form></li>
+		<li><h:form><h:commandButton class="btn btn-primary" id="account" value="account" action="#{RegisterBean.viewaccount}"></h:commandButton></h:form></li>
 		<li><h:form><h:commandButton class="btn btn-primary" id="search" value="search stocks" action="stockview"></h:commandButton></h:form></li>
 		
 		<li style="float: right"><h:form>

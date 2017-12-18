@@ -11,6 +11,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.ruikar.rashmi.connection.dbconnection;
+import org.ruikar.rashmi.doa.AccountDOA;
 import org.ruikar.rashmi.doa.UpdateprofileDOA;
 import org.ruikar.rashmi.doa.ViewprofileDOA;
 
@@ -24,12 +25,18 @@ public class RegisterBean {
 	private String username;
 	private String password;
 	private String role;
-	private DecimalFormat balance;
+	private Double balance;
 	private Boolean checkmanager;
 	private String approval;
 	private String session;
 	private int uid;
 	
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+	public Double getBalance() {
+		return balance;
+	}
 	public int getUid() {
 		return uid;
 	}
@@ -96,12 +103,6 @@ public class RegisterBean {
 	}
 	public void setRole(String role) {
 		this.role = role;
-	}
-	public DecimalFormat getBalance() {
-		return balance;
-	}
-	public void setBalance(DecimalFormat balance) {
-		this.balance = balance;
 	}
 	
 	public String register() throws SQLException{
@@ -298,6 +299,24 @@ public String viewprofile1()
 	System.out.println(this.firstname + "view profile");
 	return "editprofilemgr";
 	
+}
+
+public String viewaccount()
+{
+	int userid = (Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("session1");
+	AccountDOA ac = new AccountDOA();
+	this.balance = ac.getaccountbalance(userid);
+	
+	return "viewaccount";
+}
+
+public String viewaccount1()
+{
+	int userid = (Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("session1");
+	AccountDOA ac = new AccountDOA();
+	this.balance = ac.getaccountbalance(userid);
+	
+	return "viewaccountmgr";
 }
 
 	public static void main(String[] args) {
